@@ -1,0 +1,12 @@
+v1.2 -
+	Added support for hex netmasks.
+	Minor bugfixes, cleanup.
+v1.1 -
+	Introduced support for reporting network address, broadcast address,
+	number of IPs, first IP and last IP.
+	Made some source adjustments to facilitate compiling under
+	Win32, MacOS Classic and MacOS X.
+	Optimized a routine or two.
+	Cleaned up code / headers.
+v1.0 -
+	Initial Release

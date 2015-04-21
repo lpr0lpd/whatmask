@@ -1,0 +1,54 @@
+Windows users: 
+ 
+Binaries of Whatmask for Windows are available from:
+http://www.laffeycomputer.com/whatmask.html
+
+If you wish to compile the source yourself the CodeWarrior6 project files
+have been included in the "win" directory. These files will actually compile
+for Windows and Mac OS. The Windows targets are the ones without the word "Mac"
+in them (duh).
+
+If you do not use CodeWarrior you are on your own; however these programs
+should compile easily under any environment. You may need to include the
+following:
+
+#define  __dest_os	 __win32_os
+
+
+
+Mac users:
+
+Precompiled Binaries of Whatmask for Mac OS (Classic/OS X Carbon, 
+and OS X command line)  are available from:
+http://www.laffeycomputer.com/whatmask.html
+
+If you wish to compile the source yourself the CodeWarrior6 project files
+have been included in the "win" directory (sorry for the name). These
+files will actually compile for Windows and Mac OS. The Mac targets are
+the ones with the word "Mac" in them (duh). The Mac OS version compiled by
+CodeWarrior is the Carbon version that runs in its own window under Mac OS
+Classic (OS 8 or 9) and OS X. Note that you may get some warnings about
+files not in the hierarchy when you open the project. These are the Windows
+lib files that CW will relocate for you (if you installed the Windows support
+on your Mac). I have not tried to open the project on a machine without
+the Windows support installed; however, CW should at least let you build the
+Mac targets...
+
+If you wish to compile a command line version (for use from the Terminal 
+window) for Mac OS X (which is the recommended method for OS X) simply follow 
+the UN*X instructions in the INSTALL file. Both programs should compile 
+cleanly with:
+./configure
+make
+make install  <-- (Need root to install in system directories)
+
+If you do not use CodeWarrior, and are not compiling for the command line,
+you are on your own; however these programs should compile easily under any 
+environment. You may need to include the following:
+
+#define  __dest_os	  __mac_os
+
+Do NOT include that when compiling for the command line under OS X.
+
+
+Have fun.

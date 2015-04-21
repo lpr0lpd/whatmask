@@ -1,0 +1,60 @@
+AC_INIT(main.c)
+AM_INIT_AUTOMAKE(whatmask,1.2)
+AC_PROG_CC
+AC_PROG_INSTALL
+
+AC_HEADER_STDC
+AC_TYPE_SIZE_T
+
+
+AC_ARG_WITH(printheader,
+[  --with-printheader                print out the header (default yes)],[
+  if test "$withval" = "no"; then
+    AC_DEFINE(NO_PRINT_HEADER)
+  fi
+])
+
+AC_ARG_WITH(locale-support,
+[  --with-locale-support               support locales for number formatting of thousands groupings (default yes)],[
+  if test "$withval" = "no"; then
+    AC_DEFINE(NO_LOCALE_SUPPORT)
+  fi
+])
+
+
+AC_CHECK_SIZEOF(unsigned short, 2)
+AC_CHECK_SIZEOF(unsigned int, 4)
+AC_CHECK_SIZEOF(unsigned long, 4)
+AC_CHECK_HEADERS(locale.h)
+
+
+AC_TRY_RUN([
+#include <stdio.h>
+#include <string.h>
+int main(void) {
+char t[10];
+snprintf(t,10,"%'u",10000);
+printf("Trying to print 10000 with the format string %%'u yields: %s\n",t);
+return( !strncmp(t,"'u",10));
+}
+], \
+echo "Your printf seems to support %'u for number formatting. (good)", \
+echo "Your printf doesn't seem to support %'u for number formatting. (too bad)"; \
+AC_DEFINE(NO_LOCALE_SUPPORT), \
+echo "  Cross Compiling so locale support is disabled!"; \
+AC_DEFINE(NO_LOCALE_SUPPORT), \
+)
+
+
+AM_CONFIG_HEADER(config.h)
+
+AC_OUTPUT(	Makefile \
+		man/Makefile \
+		win/Makefile \
+		win/whatmask_Data/Makefile \
+		win/whatmask_Data/Whatmask_Mac_Debug/Makefile \
+		win/whatmask_Data/Whatmask_Mac_Release/Makefile \
+		win/whatmask_Data/Whatmask_Win_Debug/Makefile \
+		win/whatmask_Data/Whatmask_Win_Release/Makefile
+	)
+
